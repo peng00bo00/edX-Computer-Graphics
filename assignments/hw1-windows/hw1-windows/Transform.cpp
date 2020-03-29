@@ -31,8 +31,11 @@ void Transform::up(float degrees, vec3& eye, vec3& up) {
   // YOUR CODE FOR HW1 HERE 
 	vec3 axis = glm::cross(eye, up);
 	axis = glm::normalize(axis);
-	up = Transform::rotate(degrees, axis) * up;
-	eye = Transform::rotate(degrees, axis) * eye;
+
+	mat3 R = Transform::rotate(degrees, axis);
+
+	up = R * up;
+	eye = R * eye;
 }
 
 // Your implementation of the glm::lookAt matrix
